@@ -1,1 +1,4 @@
+Ruben Boero
+Kali Plan
+
 I plan to use Kali on my M1 Macbook Air. I have not started my installation of Kali yet, but I helped write the documentation for it, so I am confident that I can get it up and running.

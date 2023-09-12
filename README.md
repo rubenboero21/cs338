@@ -1,3 +1,3 @@
 # cs338
 
-Repo for c338 in Fall 2023.
+Repo for cs338 in Fall 2023.

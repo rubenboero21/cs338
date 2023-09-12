@@ -7,13 +7,9 @@
 
 3	172.16.15.128	129.6.15.28	TCP	53408 → 13 [ACK] Seq=1 Ack=1 Win=64240 Len=0
 
-5	172.16.15.128	129.6.15.28	TCP	53408 → 13 [FIN, ACK] Seq=1 Ack=53 Win=64188 Len=0
-
-6	129.6.15.28	172.16.15.128	TCP	13 → 53408 [ACK] Seq=53 Ack=2 Win=64239 Len=0
-
 2) 13
 
-3) 
+3) The client needs a port so that the server can send information back to the client.
 
 4) 4	129.6.15.28	172.16.15.128	DAYTIME	DAYTIME Response
 
@@ -23,14 +19,17 @@ Daytime Protocol
     Daytime: \n60199 23-09-12 19:25:31 50 0 0 735.7 UTC(NIST) * \n
 
 
-6)
+6) [SYN] stands for synchronization. This means that the computer sending the SYN packet is giving the information necessary to establish communication with the computer receiving the SYN packet.
 
-7)
+7) [ACK] stands for acknowledge. This means that a message has been received by the computer that sent the ACK packet.
 
-8)
+8) [FIN] stands for finish. This means that the connection between server and client should be closed.
 
-9)
+9)The nc client initiated the closing of the TCP connection. Frame 5 contains this summary: 
 
+5	0.068152026	172.16.15.128	129.6.15.28	TCP	54	53408 → 13 [FIN, ACK] Seq=1 Ack=53 Win=64188 Len=0
+
+Notably, I see "53408 → 13 [FIN, ACK]." I know that I'm asking port 13 on the server, so that must mean that 54408 is the port from which nc is asking the server for information. The arrow means that nc is sending a FIN packet to the server. Additionally, I used the ifconfig command to find out what my IP address is, and I see that the source of the FIN is from my IP address, so the nc client must have initiated the close.
 
 ===== HTTP =====
 

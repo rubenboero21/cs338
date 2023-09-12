@@ -11,13 +11,17 @@
 
 6	129.6.15.28	172.16.15.128	TCP	13 → 53408 [ACK] Seq=53 Ack=2 Win=64239 Len=0
 
-2)
+2) 13
 
-3)
+3) 
 
-4)
+4) 4	129.6.15.28	172.16.15.128	DAYTIME	DAYTIME Response
 
 5)
+Daytime Protocol
+    Type: Response
+    Daytime: \n60199 23-09-12 19:25:31 50 0 0 735.7 UTC(NIST) * \n
+
 
 6)
 

@@ -25,7 +25,7 @@ Daytime Protocol
 
 8) [FIN] stands for finish. This means that the connection between server and client should be closed.
 
-9)The nc client initiated the closing of the TCP connection. Frame 5 contains this summary: 
+9) The nc client initiated the closing of the TCP connection. Frame 5 contains this frame summary: 
 
 5	0.068152026	172.16.15.128	129.6.15.28	TCP	54	53408 → 13 [FIN, ACK] Seq=1 Ack=53 Win=64188 Len=0
 
@@ -33,8 +33,20 @@ Notably, I see "53408 → 13 [FIN, ACK]." I know that I'm asking port 13 on the 
 
 ===== HTTP =====
 
-1)
+1) 2 TCP requests were opened. I can tell because there are 2 sets of SYN, SYN, ACK, ACK packets. Also, I can see that my IP address sent 2 distinct TCP packets to Jeff's website.
 
-2)
+2) The homepage is requested on frame 7:
+7	0.051142214	172.16.15.128	45.79.89.123	HTTP	409	GET /index.html HTTP/1.1 
 
-3)
+I can tell that this is the correct frame because of the HTTP GET request for /index.html. Additionally, frame 7 tells me that the response to this request is in frame 9. In frame 9 I can see the html that was used to populate the website.
+
+3) The client requests the photograph of Jeff's head is requested on frame 11:
+11	0.188608490	172.16.15.128	45.79.89.123	HTTP	378	GET /jeff_square_head.jpg HTTP/1.1 
+
+This frame shows the client initiating a GET request for a .jpg file (of Jeff).
+
+===== QUESTIONS =====
+
+* Did you find a way to fix the visual bug in the raw bytes section of the Wireshark output?
+
+

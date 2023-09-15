@@ -12,7 +12,7 @@ Ruben Boero
 
 2) 53408
 
-3) The client needs a port so that the server can send information back to the client.
+3) The client needs a port so that the server can send information back to the client. The server needs to be able to communicate with a specific piece of software on the client computer.
 
 4) 4	129.6.15.28	172.16.15.128	DAYTIME	DAYTIME Response
 

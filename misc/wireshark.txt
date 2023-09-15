@@ -17,7 +17,6 @@ Ruben Boero
 4) 4	129.6.15.28	172.16.15.128	DAYTIME	DAYTIME Response
 
 5)
-*I FEEL LIKE IM MISSING SOMETHING FOR THIS SECTION*
 Daytime Protocol
     Type: Response
     Daytime: \n60199 23-09-12 19:25:31 50 0 0 735.7 UTC(NIST) * \n
@@ -27,6 +26,8 @@ Daytime Protocol
 * The Daytime information displays the date and time with some additional information such as whether daylight savings time is in effect. I found this information here: 
 
 https://www.nist.gov/pml/time-and-frequency-division/time-distribution/internet-time-service-its
+
+* The frame also contains information such as the time the current communication has taken, when the communication was sent, and the number of bytes long the message is.
 
 
 6) [SYN] stands for synchronization. This means that the computer sending the SYN packet is giving the information necessary to establish communication with the computer receiving the SYN packet.

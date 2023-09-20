@@ -1,0 +1,9 @@
+This is plain text. I sure hope no one reads it...
+
+Notes:
+* On Mac (rather than Kali), need to add the -i tag to specify that cipher.base64 is the input:
+
+	base64 -d -i cipher.base64 | hexdump -C
+
+* Instead of typing in the k and iv, you can use bash stuff to read it in from a text file
+	openssl enc -d -aes-128-cbc -K $(cat k.txt) -iv $(cat iv.txt) -base64 -in cipher.base64 -out 	decrypted.txt

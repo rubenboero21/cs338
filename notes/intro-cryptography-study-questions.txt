@@ -1,0 +1,34 @@
+INTRO CRYPTOGRAPHY STUDY QUESTIONS
+
+Among other online resources, you might find Chapter 5 of Anderson's Security Engineering, 2e helpful. By the middle of the fourth week of class, make sure you can answer the following questions clearly and concisely.
+
+What's the difference between symmetric and asymmetric encryption algorithms? Be able to name at least two examples of each.
+	* Symmetric encryption algorithm
+		The same key is used to encrypt and decrypt the message.
+
+		examples:
+			Caesar cipher - moving letters down the alphabet by a set amt
+			Stream ciphers
+				RC4, AES-CTR, and more
+			Block cipher
+				Twofish, serpent, and more
+
+	* Asymmetric encryption
+		There are 2 keys, a secret key S and a public key P. There's 1 encryption function. S 		and P invert each other.
+
+		
+
+Of what does an RSA public key consist? Same question for the private key. What's the required mathematical relationship between the two?
+	* Public key
+		
+	* Private key
+
+
+Given an RSA public key, how do you encrypt a message? Given an RSA private key and a message encrypted with the corresponding public key, how do you obtain the original message?
+
+What's a public key infrastructure (PKI), and why would you want one?
+What is a cryptographic hash function, and what is one used for? What properties does it need to have? Be able to name at least two.
+
+What is a digital signature? How could Alice use RSA and a hash function to compute a signature? How could Bob verify Alice's signature?
+
+What is a message authentication code (MAC), and what is one used for? What properties does it need to have? Be able to name at least two.

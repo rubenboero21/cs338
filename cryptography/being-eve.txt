@@ -40,6 +40,11 @@ end up with after decrypting the encrypted message?)
     This gives an integer. Turning this integer into binary reveals 2 ascii characters smushed
     back-to-back. Converting the ascii into English letters reveals the message.
 
+    Alice encrypted her message by taking 2 characters at a time, concatenating their binary 
+    ascii values together, then taking that binary number as an integer. That integer is then 
+    encoded using Alice's public key as per RSA. 
+        c(m) = m^e mod n
+
 Show precisely where in your process you would have failed if the integers involved were large
 (e.g., on the order of a 2000-bit value for n).
     Brute forcing for d would have failed (taken way too much time) if n were large (lines 53-56).

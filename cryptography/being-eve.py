@@ -1,6 +1,15 @@
 # Ruben Boero
 
-import binascii
+# functions used in RSA section
+def decrypt(c, d, n):
+    return (c**d % n)
+
+# https://blog.finxter.com/python-binary-string-to-ascii-string-and-vice-versa/
+def bin_to_str(my_bin):
+    my_int = my_int = int(my_bin, base=2)
+    my_str = my_int.to_bytes((my_int.bit_length() + 7)//8, 'big').decode()
+    return my_str
+
 
 # ----------- Diffie Hellman -----------
 
@@ -37,9 +46,6 @@ cipherText = [65426, 79042, 53889, 42039, 49636, 66493, 41225, 58964,
 e = 17
 n = 170171
 
-# p = 449, q = 379
-# n = 170171
-
 # inefficiently computes the values of p and q (commented out bc its slow)
 # for i in range(n):
 #     for j in range(i):
@@ -55,9 +61,6 @@ for d in range(n):
         print("d: ", d)
         break
 
-def decrypt(c, d, n):
-    return (c**d % n)
-
 # The decryption takes a minute, so I put it into a text file to save time on each subsequent 
 # run of this program
 f = open("cryptography/decryptMessage.txt", "x")
@@ -66,12 +69,6 @@ for c in cipherText:
     f.write(bin(decrypt(c, d, n)) + '\n')
 
 f.close()
-
-# https://blog.finxter.com/python-binary-string-to-ascii-string-and-vice-versa/
-def bin_to_str(my_bin):
-    my_int = my_int = int(my_bin, base=2)
-    my_str = my_int.to_bytes((my_int.bit_length() + 7)//8, 'big').decode()
-    return my_str
 
 f = open("cryptography/decryptMessage.txt", "r")
 

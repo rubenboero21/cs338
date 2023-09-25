@@ -49,4 +49,6 @@ Show precisely where in your process you would have failed if the integers invol
 Explain, briefly, why the message encoding Alice used would be insecure even if Bob's keys
 involved very large integers.
 
-    
+    Alice's message would have been insecure because the 2 character strings that Alice encoded
+    can be matched to English. From there, it's possible to figure out the message without
+    knowing the encoding scheme.

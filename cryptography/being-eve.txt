@@ -1,5 +1,8 @@
 Ruben Boero
 
+***PLEASE USE BEING-EVE.PDF TO GRADE***
+**I've included this txt in the submission because the pdf is harder to read than this txt.**
+
 YOUR JOB FOR DIFFIE HELLMAN
 Figure out the shared secret agreed upon by Alice and Bob. This will be an integer.
     The secret message is 6.

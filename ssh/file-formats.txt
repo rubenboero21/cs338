@@ -1,4 +1,4 @@
-Ruben Boero, Vanessa Heynes, Kai Weiner
+# Ruben Boero, Vanessa Heynes, Kai Weiner
 
 # Private Key
 
@@ -86,11 +86,29 @@ From RFC 8017:
    o  coefficient is the CRT coefficient q^(-1) mod p.
 
 4)
-
+	
 
 
 5)
+1st integer:
+	Name of the integer: version
+	Value of the integer: 0x00
+	Starting index: 4
+	DER Encoding: 
+		0x02 = 0b00000010: 
+			[00|0|00010]
+			First section (class) = 0 -> universal
+			Second section (P/C value) = 0 -> primitive
+			Third section (primitive type) = 2 -> INTEGER
+		0x01 = 0b00000001:
+			length octet = 1 ->  1 byte of information
+			
+2nd integer:
+	
+
 
 # Public Key
 
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDRvseTxS79L93+OfdEE4pkV4etLsX8A+j4AkTEDUwCHTA0RhogSDBOWNQ0sUsdcXWwKcOdyWA5oieY0yz4OFPstde5+aMf7dKhWcGfI3Q8jwJtI1DOVNJde10YdCHD1spaoLqJEhmVqxGdzehuQuXQMflwZN/fAsIcnNzAI/D7jnw+QzzjGdyLSqUiXDYw9DNSXotCjmG5nV468G30aQ5GNrT6jkPh+zmQrfOcy2NutO52jLe17a3wJb4McVyAx5Biyslx/WvGDNbR5X3x8gVxDsXpBnhBIWa0IpcE7MUlTqdeEVYsLo4wIhvnfQeUtfZ3z8mu7sXw6nzPQkoF7KnZK4qWRQiQYURJ2AIA0jsXO/Opr5INlABlQGinc3Wo+tc9a6CY62J4OQOjsLcPVZuECqmQkV9uJdtu9RxzH+J5fC3lhCDpM/XqfVama0k8EI/fuEhpYlGpFCZDX+o6a2bMa4glGV+FHoMj7QUn4YjHINf4WmKQ8OqFBRDmBFM9fEk= heynesk@mantis
+
+# Sanity Check

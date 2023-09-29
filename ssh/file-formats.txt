@@ -1,4 +1,6 @@
-# contents of id_rsa_homework
+Ruben Boero, Vanessa Heynes, Kai Weiner
+
+# Private Key
 
 -----BEGIN RSA PRIVATE KEY-----
 MIIG5AIBAAKCAYEA0b7Hk8Uu/S/d/jn3RBOKZFeHrS7F/APo+AJExA1MAh0wNEYa
@@ -40,6 +42,55 @@ zniKMCc9VOd6l+ZZgyMBmSdf8vZgeFlCH6WgRbyItt7reDY2BnXy3dwRVTGJ6vUY
 ZuGpPEyI9lbITzV9W4shFymUVnjyJYiZn7KmRO2xRpkWVFsfeNNrVA==
 -----END RSA PRIVATE KEY-----
 
+3)
+From RFC 8017:
 
-# contents of id_rsa_homework.pub
+         RSAPrivateKey ::= SEQUENCE {
+             version           Version,
+             modulus           INTEGER,  -- n
+             publicExponent    INTEGER,  -- e
+             privateExponent   INTEGER,  -- d
+             prime1            INTEGER,  -- p
+             prime2            INTEGER,  -- q
+             exponent1         INTEGER,  -- d mod (p-1)
+             exponent2         INTEGER,  -- d mod (q-1)
+             coefficient       INTEGER,  -- (inverse of q) mod p
+             otherPrimeInfos   OtherPrimeInfos OPTIONAL
+         }
+
+   The fields of type RSAPrivateKey have the following meanings:
+
+   o  version is the version number, for compatibility with future
+      revisions of this document.  It SHALL be 0 for this version of the
+      document, unless multi-prime is used; in which case, it SHALL be
+      1.
+
+            Version ::= INTEGER { two-prime(0), multi(1) }
+               (CONSTRAINED BY
+               {-- version must be multi if otherPrimeInfos present --})
+
+   o  modulus is the RSA modulus n.
+
+   o  publicExponent is the RSA public exponent e.
+
+   o  privateExponent is the RSA private exponent d.
+
+   o  prime1 is the prime factor p of n.
+
+   o  prime2 is the prime factor q of n.
+
+   o  exponent1 is d mod (p - 1).
+
+   o  exponent2 is d mod (q - 1).
+
+   o  coefficient is the CRT coefficient q^(-1) mod p.
+
+4)
+
+
+
+5)
+
+# Public Key
+
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDRvseTxS79L93+OfdEE4pkV4etLsX8A+j4AkTEDUwCHTA0RhogSDBOWNQ0sUsdcXWwKcOdyWA5oieY0yz4OFPstde5+aMf7dKhWcGfI3Q8jwJtI1DOVNJde10YdCHD1spaoLqJEhmVqxGdzehuQuXQMflwZN/fAsIcnNzAI/D7jnw+QzzjGdyLSqUiXDYw9DNSXotCjmG5nV468G30aQ5GNrT6jkPh+zmQrfOcy2NutO52jLe17a3wJb4McVyAx5Biyslx/WvGDNbR5X3x8gVxDsXpBnhBIWa0IpcE7MUlTqdeEVYsLo4wIhvnfQeUtfZ3z8mu7sXw6nzPQkoF7KnZK4qWRQiQYURJ2AIA0jsXO/Opr5INlABlQGinc3Wo+tc9a6CY62J4OQOjsLcPVZuECqmQkV9uJdtu9RxzH+J5fC3lhCDpM/XqfVama0k8EI/fuEhpYlGpFCZDX+o6a2bMa4glGV+FHoMj7QUn4YjHINf4WmKQ8OqFBRDmBFM9fEk= heynesk@mantis

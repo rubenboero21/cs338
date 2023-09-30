@@ -86,7 +86,7 @@ From RFC 8017:
    o  coefficient is the CRT coefficient q^(-1) mod p.
 
 4)
-	
+When we used Lapo Luchino's decoder, we copy-pasted our RSA key into the correct area and hit decode. When we used Michael Holtstrom's decoder, we removed the RSA header and footer, then decoded the file.	
 
 
 5)

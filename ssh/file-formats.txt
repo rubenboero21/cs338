@@ -101,9 +101,36 @@ From RFC 8017:
 			Second section (P/C value) = 0 -> primitive
 			Third section (primitive type) = 2 -> INTEGER
 		0x01 = 0b00000001:
-			length octet = 1 ->  1 byte of information
+			[0|0000001]
+			First section (length form) = 0 -> definite, short
+			Second section (length octet) = 1 ->  1 byte of information
 			
+
 2nd integer:
+	Name of the integer: modulus
+	Value of the integer: 0x00d1bec793c52efd2fddfe39f744138a645787ad2ec5fc03e8f80244c40d4c021d3034461a2048304e58d434b14b1d7175b029c39dc96039a22798d32cf83853ecb5d7b9f9a31fedd2a159c19f23743c8f026d2350ce54d25d7b5d187421c3d6ca5aa0ba89121995ab119dcde86e42e5d031f97064dfdf02c21c9cdcc023f0fb8e7c3e433ce319dc8b4aa5225c3630f433525e8b428e61b99d5e3af06df4690e4636b4fa8e43e1fb3990adf39ccb636eb4ee768cb7b5edadf025be0c715c80c79062cac971fd6bc60cd6d1e57df1f205710ec5e90678412166b4229704ecc5254ea75e11562c2e8e30221be77d0794b5f677cfc9aeeec5f0ea7ccf424a05eca9d92b8a96450890614449d80200d23b173bf3a9af920d9400654068a77375a8fad73d6ba098eb62783903a3b0b70f559b840aa990915f6e25db6ef51c731fe2797c2de58420e933f5ea7d56a66b493c108fdfb848696251a91426435fea3a6b66cc6b8825195f851e8323ed0527e188c720d7f85a6290f0ea850510e604533d7c49
+	Starting index: 7
+	DER Encoding:
+		0x02 = 0b00000010:
+			[00|0|00010]
+			First section (class) = 0 -> universal
+			Second section (P/C value) = 0 -> primitive
+			Third section (primitive type) = 2 -> INTEGER
+			
+		0x82 = 0b10000010:
+			[1|0000010]
+			First section (length form) = 1 -> definite, long
+			Second section (length form) = 2 -> 2 bytes specifying the length 				of the information to come
+		
+		0x0181 = 0b1110000101:
+			1110000101 = 385 -> 385 bytes of information in the payload
+
+Third integer:
+	Name of integer: public exponent (e)
+	Value of the integer: 
+0x15004737728cebe8f90f557a7ea47e3ce1cec1f666f87ee3bac16f6539f79c5693d70815e19998cc9f744ffa588d10293a845403de7ff6055875a2df63d3300409891a23f6c361aaaf612f53e1d6e7a1621acf686de06c57d3dc54707c59018ead585e950eece4e1861808dff6fa57cc6ad490fe68b409b0a9f0c2e1b23794d885742e835031ecb53dba1f20a084724f193642375dce47298c9fd6270c4be094033247cc2adbdbadbde0ccfdac17bea3fb247f9e7d66d8fdaca9c4d12cf3f007447c2cf400d8e6b197e02f4c3caeba09a9adb824ae88a800e703cfb33594814855fbb9b2bee240cbca987da733bf710c6eb2ebae2ad3568ef9961c86466a70bf223c68d103904eb138652cfd88defd54503265016124cda4ff318c435907ac8c53d415c2b5f46878f44de0122f8a1926603058bd59431925688c0c244164dafc4bcc9a03891330a912774d79c3fbfcb9ecfe3271ad87c0a9d9a3ee0637eb980a96556b6b45e9e0a869703cb6b53d9184d08a149382987ccfd3caccca154c59a1
+	Starting index: 396
+	DER encoding: 
 	
 
 

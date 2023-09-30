@@ -127,11 +127,134 @@ When we used Lapo Luchino's decoder, we copy-pasted our RSA key into the correct
 
 Third integer:
 	Name of integer: public exponent (e)
-	Value of the integer: 
-0x15004737728cebe8f90f557a7ea47e3ce1cec1f666f87ee3bac16f6539f79c5693d70815e19998cc9f744ffa588d10293a845403de7ff6055875a2df63d3300409891a23f6c361aaaf612f53e1d6e7a1621acf686de06c57d3dc54707c59018ead585e950eece4e1861808dff6fa57cc6ad490fe68b409b0a9f0c2e1b23794d885742e835031ecb53dba1f20a084724f193642375dce47298c9fd6270c4be094033247cc2adbdbadbde0ccfdac17bea3fb247f9e7d66d8fdaca9c4d12cf3f007447c2cf400d8e6b197e02f4c3caeba09a9adb824ae88a800e703cfb33594814855fbb9b2bee240cbca987da733bf710c6eb2ebae2ad3568ef9961c86466a70bf223c68d103904eb138652cfd88defd54503265016124cda4ff318c435907ac8c53d415c2b5f46878f44de0122f8a1926603058bd59431925688c0c244164dafc4bcc9a03891330a912774d79c3fbfcb9ecfe3271ad87c0a9d9a3ee0637eb980a96556b6b45e9e0a869703cb6b53d9184d08a149382987ccfd3caccca154c59a1
+	Value of the integer: 0x10001
 	Starting index: 396
 	DER encoding: 
-	
+		0x02 = 0b00000010:
+		[00|0|00010]
+		First section (class) = 0 -> universal
+		Second section (P/C value) = 0 -> primitive
+		Third section (primitive type) = 2 -> INTEGER
+
+		0x03 = 0b00000011:
+		[0|0000011]
+		First section (length form) = 0 -> definite, short
+		Second section (length octet) = 3 ->  3 bytes of information
+
+Fourth integer:
+	Name of the integer: private exponent (d)
+	Value of the integer: 
+0x15004737728cebe8f90f557a7ea47e3ce1cec1f666f87ee3bac16f6539f79c5693d70815e19998cc9f744ffa588d10293a845403de7ff6055875a2df63d3300409891a23f6c361aaaf612f53e1d6e7a1621acf686de06c57d3dc54707c59018ead585e950eece4e1861808dff6fa57cc6ad490fe68b409b0a9f0c2e1b23794d885742e835031ecb53dba1f20a084724f193642375dce47298c9fd6270c4be094033247cc2adbdbadbde0ccfdac17bea3fb247f9e7d66d8fdaca9c4d12cf3f007447c2cf400d8e6b197e02f4c3caeba09a9adb824ae88a800e703cfb33594814855fbb9b2bee240cbca987da733bf710c6eb2ebae2ad3568ef9961c86466a70bf223c68d103904eb138652cfd88defd54503265016124cda4ff318c435907ac8c53d415c2b5f46878f44de0122f8a1926603058bd59431925688c0c244164dafc4bcc9a03891330a912774d79c3fbfcb9ecfe3271ad87c0a9d9a3ee0637eb980a96556b6b45e9e0a869703cb6b53d9184d08a149382987ccfd3caccca154c59a1
+	Starting index: 401
+	DER encoding:
+		0x02 = 0b00000010:
+		[00|0|00010]
+		First section (class) = 0 -> universal
+		Second section (P/C value) = 0 -> primitive
+		Third section (primitive type) = 2 -> INTEGER
+		
+		0x82 = 0b10000010:
+			[1|0000010]
+			First section (length form) = 1 -> definite, long
+			Second section (length form) = 2 -> 2 bytes specifying the length 				of the information to come
+		
+		0x0180 = 0b110000000:
+			110000000 = 384 -> 384 bytes of information in the payload
+
+Fifth integer:
+	Name of the integer: prime1 (the prime factor p of n)
+	Value of the integer:
+0x00f76bfc9d190632bf2f80e6eb3a0af462dc915c0430a81f13d291192a02b21e141da755f3a513da71d8825d857422c2b9dcd0a245c955c25a2853e5123ab7cd03be8ed2575f86ce48196e9fd841716a8709da6bc435dca21fbe38790449cf9d72f8ec46d74559430858bbe239b85d2812b3482a601ba8b95b9223271a8724bc6b3629bc49d69e90bd06c86622c8fd8d9b352683fc7f72d55eb70dd1ec5aa176e05131161c8e1acb69c63dfc10f6357a8a0e0818905421f7a8c101ae5e9c5f07a5
+	Starting index: 789
+	DER encoding: 
+		0x02 = 0b00000010:
+		[00|0|00010]
+		First section (class) = 0 -> universal
+		Second section (P/C value) = 0 -> primitive
+		Third section (primitive type) = 2 -> INTEGER
+		
+		0x81 = 0b10000001:
+			[1|0000001]
+			First section (length form) = 1 -> definite, long
+			Second section (length form) = 1 -> 1 byte specifying the length 				of the information to come
+		
+		0xC1 = 0b11000001 = 193 -> 193 bytes of information in the payload 
+ 
+Sixth integer:
+	Name of the integer: prime2 (the prime factor q of n)
+	Value of the integer:
+0x00d904641d76949079a330917a4c1ccc38e308b52d16c7a5a5b4353cf9ff12fe9cf4c2fe8bc7bf80de8919e15df7d69241afdac78db860e9bbc8c65781cd84f2ee6ef3b00df2a435af86b11cc43b188cd258e3bd105069efcbc1c1e00fee2b62b2830eb2d476b58c5e701eccb151cf4e0cdef5b04002ea3c56996d836af35ce50c5568112da34aa858cd121d99332a467d6084d64c45d40d4e81f19ba3e9dc82364a3f454414b4bcf7bbc1ad738964ab4be1ef6eef877a788143e100fed0c1a0d5
+	Starting index: 985
+	Der encoding: 
+		0x02 = 0b00000010:
+		[00|0|00010]
+		First section (class) = 0 -> universal
+		Second section (P/C value) = 0 -> primitive
+		Third section (primitive type) = 2 -> INTEGER
+		
+		0x81 = 0b10000001:
+			[1|0000001]
+			First section (length form) = 1 -> definite, long
+			Second section (length form) = 1 -> 1 byte specifying the length 				of the information to come
+		
+		0xC1 = 0b11000001 = 193 -> 193 bytes of information in the payload 
+
+Seventh integer:
+	Name of the integer: exponent1 (d mod (p - 1))
+	Value of the integer:
+0x009621e18416062bced4ed5bb18a63d14d17d7e044ee9d65562ae43ea7be41047d624d029bb82466ddc3e9bf03d6a7ad0f08cd545a1244468d5c8123b3bf0b7e8c7219c9ca98bd7cf844ee5a71e7ac015ef57ca2fdc94d1ad7361ea05818cdb1156db4397c30a96c42694d808553b8bb3335b4697a2dee60a30ef6e3a8762eb5623cd8705741b2afd2f385b06c1517bdd05b1d06e3b5162220b9e4d9e7984af78e3fd6103bbd82c6c1653881766d5f9ffe9b6b1034abc87cb5da7fc1a5c92ee4bd
+	Starting index: 1181
+	DER encoding: 
+		0x02 = 0b00000010:
+		[00|0|00010]
+		First section (class) = 0 -> universal
+		Second section (P/C value) = 0 -> primitive
+		Third section (primitive type) = 2 -> INTEGER
+		
+		0x81 = 0b10000001:
+			[1|0000001]
+			First section (length form) = 1 -> definite, long
+			Second section (length form) = 1 -> 1 byte specifying the length 				of the information to come
+		
+		0xC1 = 0b11000001 = 193 -> 193 bytes of information in the payload 
+
+Eighth integer
+	Name of the integer: exponent2 (d mod (q - 1))
+	Value of the integer:
+0x008732511c79cf3be24b63ea7d82053ec501cb5ef36409a48c82a3d804f67f62d76d343d57df6cd25fd091aaf0db8175442ec5e123cd05b31725914adab6aa689d59c9be9831dd5304b2a88bff43c19b993f7f413d749b4aa46964daad91f6bd59f083abace8f759274c3a23d323e03e038eb308c6180acce436591f51f5a29d9efd6603ada6d8cfdfe281b2a6ca553fecc3c07db0ae9fd85a5c61a4508d54ae5a1c0f269baf3a99aecbed709d55aebd785c9cc943b7e6f843af81f118cdfc92b1
+	Starting index: 1377
+	DER encoding:
+		0x02 = 0b00000010:
+		[00|0|00010]
+		First section (class) = 0 -> universal
+		Second section (P/C value) = 0 -> primitive
+		Third section (primitive type) = 2 -> INTEGER
+		
+		0x81 = 0b10000001:
+			[1|0000001]
+			First section (length form) = 1 -> definite, long
+			Second section (length form) = 1 -> 1 byte specifying the length 				of the information to come
+		
+		0xC1 = 0b11000001 = 193 -> 193 bytes of information in the payload 
+
+Ninth integer:
+	Name of the integer: coefficient (the CRT coefficient q^(-1) mod p)
+	Value of the integer:
+0x0a1efe5a6a351acf0d2cc02399adcdd7c682645f5c95ffda30f447ae1a2cc99787e9800bc302111a9086ad4a878a631694507f594a368fb1d88c2c49e5ca20931e3470b826573c74e9133573fe2d623dcb2c0bea2e7022cc4452ceaf3f663ed7950964bc2ab0007fce788a30273d54e77a97e65983230199275ff2f6607859421fa5a045bc88b6deeb7836360675f2dddc11553189eaf51866e1a93c4c88f656c84f357d5b8b211729945678f22588999fb2a644edb1469916545b1f78d36b54
+	Starting index: 1573
+	DER encoding:
+		0x02 = 0b00000010:
+		[00|0|00010]
+		First section (class) = 0 -> universal
+		Second section (P/C value) = 0 -> primitive
+		Third section (primitive type) = 2 -> INTEGER
+		
+		0x81 = 0b10000001:
+			[1|0000001]
+			First section (length form) = 1 -> definite, long
+			Second section (length form) = 1 -> 1 byte specifying the length 				of the information to come
+		
+		0xC0 = 0b11000000 = 192 -> 192 bytes of information in the payload 	
 
 
 # Public Key

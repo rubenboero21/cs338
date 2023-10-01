@@ -265,6 +265,10 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDRvseTxS79L93+OfdEE4pkV4etLsX8A+j4AkTEDUwC
 To decode the public key we ran:
 [public key] | cut -d " " -f2 | \ base64 -d | hexdump -ve '/1 "%02x "' -e '2/8 "\n"'
 
+^ We used the command on the linked blog post (https://www.thedigitalcatonline.com/blog/2018/04/25/rsa-keys/).
+
+
+
 Output:
 00 00 00 07                                     | string "ssh-rsa" (the key format)
 73 73 68 2d 72 73 61                            |

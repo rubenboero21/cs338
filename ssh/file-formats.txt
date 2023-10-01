@@ -270,8 +270,8 @@ To decode the public key we ran:
 
 
 Output:
-00 00 00 07                                     | string "ssh-rsa" (the key format)
-73 73 68 2d 72 73 61                            |
+00 00 00 07                                     | 7 -> the payload will be 7 bytes long
+73 73 68 2d 72 73 61                            | string "ssh-rsa" (the key format)
 ----------------------------------------------------------------------------------------------------
 00 00 00 03                                     | 3 -> the payload will be 3 bytes long
 01 00 01                                        | mpint e (the common e value)

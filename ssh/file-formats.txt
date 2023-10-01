@@ -262,6 +262,12 @@ Ninth integer:
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDRvseTxS79L93+OfdEE4pkV4etLsX8A+j4AkTEDUwCHTA0RhogSDBOWNQ0sUsdcXWwKcOdyWA5oieY0yz4OFPstde5+aMf7dKhWcGfI3Q8jwJtI1DOVNJde10YdCHD1spaoLqJEhmVqxGdzehuQuXQMflwZN/fAsIcnNzAI/D7jnw+QzzjGdyLSqUiXDYw9DNSXotCjmG5nV468G30aQ5GNrT6jkPh+zmQrfOcy2NutO52jLe17a3wJb4McVyAx5Biyslx/WvGDNbR5X3x8gVxDsXpBnhBIWa0IpcE7MUlTqdeEVYsLo4wIhvnfQeUtfZ3z8mu7sXw6nzPQkoF7KnZK4qWRQiQYURJ2AIA0jsXO/Opr5INlABlQGinc3Wo+tc9a6CY62J4OQOjsLcPVZuECqmQkV9uJdtu9RxzH+J5fC3lhCDpM/XqfVama0k8EI/fuEhpYlGpFCZDX+o6a2bMa4glGV+FHoMj7QUn4YjHINf4WmKQ8OqFBRDmBFM9fEk= heynesk@mantis
 
 7)
+We expect to find this in the public key (straight from RFC 8017)
+         RSAPublicKey ::= SEQUENCE {
+             modulus           INTEGER,  -- n
+             publicExponent    INTEGER   -- e
+         }
+
 To decode the public key we ran:
 [public key] | cut -d " " -f2 | \ base64 -d | hexdump -ve '/1 "%02x "' -e '2/8 "\n"'
 
@@ -274,7 +280,7 @@ Output:
 73 73 68 2d 72 73 61                            | string "ssh-rsa" (the key format)
 ----------------------------------------------------------------------------------------------------
 00 00 00 03                                     | 3 -> the payload will be 3 bytes long
-01 00 01                                        | mpint e (the common e value)
+01 00 01                                        | e (the common e value)
 ----------------------------------------------------------------------------------------------------
 00 00 01 81                                     | 385 -> the payload will be 385 bytes long
 ----------------------------------------------------------------------------------------------------
@@ -301,8 +307,8 @@ a3 b0 b7 0f 55 9b 84 0a a9 90 91 5f 6e 25 db 6e |
 f5 1c 73 1f e2 79 7c 2d e5 84 20 e9 33 f5 ea 7d |
 56 a6 6b 49 3c 10 8f df b8 48 69 62 51 a9 14 26 |
 43 5f ea 3a 6b 66 cc 6b 88 25 19 5f 85 1e 83 23 |
-ed 05 27 e1 88 c7 20 d7 f8 5a 62 90 f0 ea 85 05 | n end
-10 e6 04 53 3d 7c 49
+ed 05 27 e1 88 c7 20 d7 f8 5a 62 90 f0 ea 85 05 | 
+10 e6 04 53 3d 7c 49                            | n end
 
 Value of e:
 65537

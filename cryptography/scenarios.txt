@@ -7,7 +7,7 @@ Alice should use AES to send her message to Bob. Bob can then decrypt and read A
 
 2) Alice and Bob should decide on a secret key k using DH. Alice should then come up with 
 some message authentication code (MAC) A using k and the contents of her message to create a 
-cryptographic hash. (A = MAC(k, M)) Alice should then concatenate her A to the end of her 
+cryptographic hash (A = MAC(k, M)). Alice should then concatenate her A to the end of her 
 message and send it to Bob using AES (AES(k, M||A)). Once, Bob recieves the message, he can 
 make sure that Mal has not tampered with the message by computing A' using k and the message
 he received (A' = MAC(k, M)). If A = A', then Bob can be relatively sure that the message has

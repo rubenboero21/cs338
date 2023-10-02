@@ -39,3 +39,8 @@ message.
     contract and send the message to Bob (without changing Alice's signature). If Bob doesn't
     check that the signature matches the message, then he would not be aware that Mal changed 
     the message.
+
+5)
+
+6) DONT THINK THIS INCLUDES ALL OF THE INFORMATION ASKED FOR---FOUND THIS IN PUBLIC KEY VIDEO @ ~8 MINS
+Sig_CA = E(S_CA, H(data))

@@ -1,17 +1,31 @@
-1) Alice should use symmetric encryption (such as AES) to send her message to Bob.
+1) Alice should use symmetric encryption (such as AES) to send her message to Bob. They could 
+use the Diffie-Hellman key exchange (DH) to agree on a secret key.
 
-2) Alice should use a digital signature. (cryptographic hash functions @ 10 mins) She should 
-then concatenate her signature onto the end of her message, and send it to Bob. When Bob 
-recieves the message, he can use Alice's public key and her signature to compute the the 
-digest D'. If D' matches the output of hashing the message, then it's relatively 
-safe for Bob to assume that Alice is the one who sent the message.
+2) Alice and Bob should decide on a secret key k using DH. Alice should then come up with 
+some message authentication code (MAC) C using k and the contents of her message to create a 
+cryptographic hash. Alice should then concatenate her MAC to the end of her message and send
+it to Bob using symmetric encryption. Once, Bob recieves the message, he can make sure that 
+Mal has not tampered with the message by computing C' using k and the message he received. 
+If C == C', then Bob can be relatively sure that the message has not been tampered with by Mal.
 
-3) Alice and Bob can use the Diffie-Hellman key exchange to exchange private keys. Then, 
-Alice and Bob can use symmetric encryption to send their message.
+3) Alice and Bob should decide on a private key using DH. Then, Alice should create a digital 
+signature (cryptographic hash functions @ 10 mins) and concatenate her signature onto the end 
+of her message to Bob. When Bob recieves the message, he can use Alice's public key and her 
+signature to compute the the digest D'. If D' matches the output of hashing the message, then 
+it's relatively safe for Bob to assume that Alice is the one who sent the message.
 
 4) 
-* 
+* Alice could say that Bob used the wrong public key. (Bob did not in fact have Alice's public
+    key.)  This is not likely because if the wrong public key was used then the D' that Bob 
+    computes would probably not match D that Alice sent. 
 
-*
+* Alice could say that Bob used the wrong hash function to verify that the message is from 
+    Alice. This is not likely because I would assume that they had decided on which hash 
+    function to use prior to sending the message.
 
-*
+* Alice could say that there was an AITM attack. This is the most likely of the
+    three options I give. If there was an AITM attack, then it's possible that Mal was able 
+    to interrupt DH allowing Mal to decrypt/encrypt the message. Mal could then change the
+    contract and send the message to Bob (without changing Alice's signature). If Bob doesn't
+    check that the signature matches the message, then he would not be aware that Mal changed 
+    the message.

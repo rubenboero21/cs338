@@ -1,8 +1,7 @@
 # Ruben Boero
 
-1) Alice should use symmetric encryption (such as AES) to send her message to Bob. They could 
-use the Diffie-Hellman key exchange (DH) to agree on a secret key k.
-
+1) Alice and Bob should decide on a secret key k using the Diffie-Helman key exchange (DH).
+Alice should use AES to send her message to Bob. Bob can then decrypt and read Alice's message.
     Alice encrypts and sends: AES(k, M)
     Bob decrypts and reads: AES_D(k, C)
 
@@ -25,7 +24,7 @@ message.
     Compute the digest: D = H(M)
     Compute her signature: sig = E(S_A, D)
 
-4) 
+4) CAN I BREAK THE ASSUMPTIONS HERE?
 * Alice could say that Bob used the wrong public key. (Bob did not in fact have Alice's public
     key.)  This is not likely because if the wrong public key was used then the D' that Bob 
     computes would probably not match D that Alice sent. 

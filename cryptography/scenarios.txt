@@ -15,15 +15,15 @@ Mal has not tampered with the message by computing A' using k and the message he
 tampered with by Mal.
 
 3) Alice and Bob should decide on a private key k using DH. Then, Alice should create a digital 
-signature (cryptographic hash functions @ 10 mins)* and concatenate her signature onto the end 
-of her message to Bob. When Bob recieves the message, he can use Alice's public key and her 
-signature to compute the the digest D' (D' = H(M)). If D' matches the output of hashing the message 
-(D' = E(P_A, signature)), then it's relatively safe for Bob to assume that Alice is the one who sent 
-the message.
+signature* and concatenate her signature onto the end of her message to Bob. Alice should then 
+use AES to send her message to Bob (AES(k, M||sig)). When Bob recieves the message (AES_D(k, C)), 
+he can use Alice's public key and her signature to compute the the digest D' (D' = H(M)). If 
+E(P_A, sig) = D' then it's relatively safe for Bob to assume that Alice is the one who sent the 
+message.
 
 * To create a digital signature Alice should:
     Compute the digest: D = H(M)
-    Compute her signature: signature = E(S_A, D)
+    Compute her signature: sig = E(S_A, D)
 
 4) 
 * Alice could say that Bob used the wrong public key. (Bob did not in fact have Alice's public

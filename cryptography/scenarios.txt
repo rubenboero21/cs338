@@ -1,3 +1,5 @@
+# Ruben Boero
+
 1) Alice should use symmetric encryption (such as AES) to send her message to Bob. They could 
 use the Diffie-Hellman key exchange (DH) to agree on a secret key.
 

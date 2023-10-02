@@ -1,3 +1,17 @@
 1) Alice should use symmetric encryption (such as AES) to send her message to Bob.
 
-2)
+2) Alice should use a digital signature. (cryptographic hash functions @ 10 mins) She should 
+then concatenate her signature onto the end of her message, and send it to Bob. When Bob 
+recieves the message, he can use Alice's public key and her signature to compute the the 
+digest D'. If D' matches the output of hashing the message, then it's relatively 
+safe for Bob to assume that Alice is the one who sent the message.
+
+3) Alice and Bob can use the Diffie-Hellman key exchange to exchange private keys. Then, 
+Alice and Bob can use symmetric encryption to send their message.
+
+4) 
+* 
+
+*
+
+*

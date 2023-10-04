@@ -40,7 +40,9 @@ message.
     check that the signature matches the message, then he would not be aware that Mal changed 
     the message.
 
-5)
-
-6) DONT THINK THIS INCLUDES ALL OF THE INFORMATION ASKED FOR---FOUND THIS IN PUBLIC KEY VIDEO @ ~8 MINS
+5) DONT THINK THIS INCLUDES ALL OF THE INFORMATION ASKED FOR---FOUND THIS IN PUBLIC KEY VIDEO @ ~8 MINS
 Sig_CA = E(S_CA, H(data))
+
+6) No, this is not enough. WHAT WE TALK ABT IN CLASS FRIDAY
+
+7) 

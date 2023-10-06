@@ -43,6 +43,12 @@ message.
 5) DONT THINK THIS INCLUDES ALL OF THE INFORMATION ASKED FOR---FOUND THIS IN PUBLIC KEY VIDEO @ ~8 MINS
 Sig_CA = E(S_CA, H(data))
 
-6) No, this is not enough. WHAT WE TALK ABT IN CLASS FRIDAY
+6) No, this is not enough. Alice and Bob should complete DH. Alice can then issue Bob a 
+challenge. To do this she could send Bob a random number R. Bob should then send back 
+E(S_B, R||g^b mod p). If the Alice actually sees R||g^b mod p at the end of Bob's message, 
+then she can be relatively certain that she is talking to Bob. There may be a Mal in the 
+middle, but all she could do is forward information between Alice and Bob. If Mal ever changed
+the message, she would not be able to encrypt it again because she doesn't know S_B, so Alice 
+would be able to tell that the message was changed.
 
 7) 

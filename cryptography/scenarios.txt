@@ -24,7 +24,7 @@ message.
     Compute the digest: D = H(M)
     Compute her signature: sig = E(S_A, D)
 
-4) CAN I BREAK THE ASSUMPTIONS HERE?
+4)
 * Alice could say that Bob used the wrong public key. (Bob did not in fact have Alice's public
     key.)  This is not likely because if the wrong public key was used then the D' that Bob 
     computes would probably not match D that Alice sent. 

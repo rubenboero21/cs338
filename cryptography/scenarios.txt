@@ -44,7 +44,7 @@ message.
 
 6) No, this is not enough. Alice and Bob should complete DH. Alice can then issue Bob a 
 challenge. To do this she could send Bob a random number R. Bob should then send back 
-E(S_B, R||g^b mod p). If the Alice actually sees R||g^b mod p at the end of Bob's message, 
+E(S_B, R||g^b mod p). If Alice actually sees R||g^b mod p at the end of Bob's message, 
 then she can be relatively certain that she is talking to Bob. There may be a Mal in the 
 middle, but all she could do is forward information between Alice and Bob. If Mal ever changed
 the message, she would not be able to encrypt it again because she doesn't know S_B, so Alice 

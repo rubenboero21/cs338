@@ -58,3 +58,7 @@ Bob assuming that Mal's fake version of bob.com has a valid certificate.
 * Mal could bribe CA and get them to associate her domain with the same public key as bob.com.
 If Alice doesn't issue a challenge to Bob, then it would appear as if Mal's site is actually
 the same as bob.com.
+
+* Perhaps a more plausible scenario than the one above would be that the certificate has expired. 
+Alice is no longer sure that the site actually belongs to Bob. Mal could now be in control of the site,
+but if Alice is not being careful she could access the site anyway, believing that it still belongs to Bob.

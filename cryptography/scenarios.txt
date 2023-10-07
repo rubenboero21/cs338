@@ -51,7 +51,7 @@ the message, she would not be able to encrypt it again because she doesn't know 
 would be able to tell that the message was changed.
 
 7) 
-* Mal could fish Alice. That is, she could get Alice to click on a link that looks like it is 
+* Mal could phish Alice. That is, she could get Alice to click on a link that looks like it is 
 bob.com but actually isn't. From there, Mal would have all the information needed to impersonate
 Bob assuming that Mal's fake version of bob.com has a valid certificate.
 

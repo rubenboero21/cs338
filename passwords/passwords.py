@@ -22,30 +22,33 @@ def getUnsaltedPasswordHash(line):
     components = line.split(":")
     return components[1]
 
-# Create a dict of passwords and their hashed equivalents
-words = open("words.txt", "r")
+def crackPhaseOne():
+    # Crack the passwords by comparing the hashes to our dictionary
+    passwords1 = open("passwords1.txt", "r")
+    solutions = open("cracked1.txt", "w")
 
-hashDict = {}
+    for hash in passwords1:
+        user = getUser(hash)
+        passwordHash = getUnsaltedPasswordHash(hash)
 
-for word in words:
-    word = str(word).lower()
-    word = word.strip()
-    hashDict[hashPasswd(word)] = word
+        password = hashDict[passwordHash]
 
-words.close()
+        solutions.write(f'{user}:{password}\n')
 
-# Crack the passwords by comparing the hashes to our dictionary
-passwords1 = open("passwords1.txt", "r")
-solutions = open("cracked1.txt", "w")
+    passwords1.close()
+    solutions.close()
 
-for hash in passwords1:
-    user = getUser(hash)
-    passwordHash = getUnsaltedPasswordHash(hash)
+if __name__ == '__main__':
+    # Create a dict of passwords and their hashed equivalents
+    words = open("words.txt", "r")
 
-    password = hashDict[passwordHash]
+    hashDict = {}
 
-    solutions.write(f'{user}:{password}\n')
-    # print(f'{user}:{password}')
+    for word in words:
+        word = str(word).lower()
+        word = word.strip()
+        hashDict[hashPasswd(word)] = word
 
-passwords1.close()
-solutions.close()
+    words.close()
+    
+    crackPhaseOne()

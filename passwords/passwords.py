@@ -39,6 +39,12 @@ def crackPhaseOne():
     solutions.close()
 
 if __name__ == '__main__':
+
+    if len (sys.argv) < 2:
+        print('''Enter the phase that you would like to solve. \nFor example, 
+                type:\n\npython3 passwords 1 \n\nto solve phase 1''')
+        exit()
+   
     # Create a dict of passwords and their hashed equivalents
     words = open("words.txt", "r")
 
@@ -51,4 +57,6 @@ if __name__ == '__main__':
 
     words.close()
     
-    crackPhaseOne()
+    print(len(sys.argv))
+    if sys.argv[1] == "phase1" or sys.argv[1] == 1:
+        crackPhaseOne()

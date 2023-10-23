@@ -2,6 +2,7 @@
 
 import hashlib
 import binascii
+import sys
 
 # function taken from Jeff's sample code
 def hashPasswd(password):
@@ -13,18 +14,38 @@ def hashPasswd(password):
 
     return digest_as_hex_string
 
+def getUser(line):
+    components = line.split(":")
+    return components[0]
 
-words = open("/Users/rubenboero/Desktop/cs338/passwords/words.txt", "r")
+def getUnsaltedPasswordHash(line):
+    components = line.split(":")
+    return components[1]
+
+# Create a dict of passwords and their hashed equivalents
+words = open("words.txt", "r")
 
 hashDict = {}
 
 for word in words:
-    word = word.strip()
     word = str(word).lower()
-    print(word)
-
-    hashDict[word] = hashPasswd(word)
-
-print(hashDict["marmot"])
+    word = word.strip()
+    hashDict[hashPasswd(word)] = word
 
 words.close()
+
+# Crack the passwords by comparing the hashes to our dictionary
+passwords1 = open("passwords1.txt", "r")
+solutions = open("cracked1.txt", "w")
+
+for hash in passwords1:
+    user = getUser(hash)
+    passwordHash = getUnsaltedPasswordHash(hash)
+
+    password = hashDict[passwordHash]
+
+    solutions.write(f'{user}:{password}\n')
+    # print(f'{user}:{password}')
+
+passwords1.close()
+solutions.close()

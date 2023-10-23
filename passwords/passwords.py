@@ -57,6 +57,5 @@ if __name__ == '__main__':
 
     words.close()
     
-    print(len(sys.argv))
     if sys.argv[1] == "phase1" or sys.argv[1] == 1:
         crackPhaseOne()

@@ -132,7 +132,6 @@ def crackPhaseThree():
         password = hashDict.get(passwordHash)
 
         solutions.write(f'{user}:{password}\n')
-        # print(f'Found a password: {user}:{password}\n')
 
         hashDict.clear()
 

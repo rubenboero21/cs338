@@ -47,6 +47,9 @@ def crackPhaseOne():
 
     words.close()
 
+    # Used to find the number of hashes computed for summary.txt
+    # print(len(hashDict))
+
     # Crack the passwords by comparing the hashes to our dictionary
     passwords1 = open("passwords1.txt", "r")
     solutions = open("cracked1.txt", "w")

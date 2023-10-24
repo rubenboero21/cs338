@@ -33,7 +33,8 @@ def getUser(line):
 
 def getSaltedPasswordHash(line):
     components = line.split("$")
-    return components[3]
+    components = components[3].split(":")
+    return components[0]
 
 def getSalt(line):
     components = line.split("$")
@@ -128,11 +129,10 @@ def crackPhaseThree():
             hashDict[hashPassword(salt + word)] = word
 
         # find the single password that the user actually has
-        for possiblePassword in hashDict:
-            password = hashDict.get(possiblePassword)
+        password = hashDict.get(passwordHash)
 
-            solutions.write(f'{user}:{password}\n')
-            print(f'Found a password: {user}:{password}\n')
+        solutions.write(f'{user}:{password}\n')
+        # print(f'Found a password: {user}:{password}\n')
 
         hashDict.clear()
 
@@ -149,4 +149,4 @@ if __name__ == '__main__':
             crackPhaseTwo()
 
         elif sys.argv[1] == "phase3" or sys.argv[1] == "3":
-            print(":P")
+            crackPhaseThree()

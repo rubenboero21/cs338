@@ -1,0 +1,45 @@
+Part 1
+Total time: [user time from a "time" command]
+    user    0m0.849s
+Number of hashes computed: [count of the # of hashes computed] 
+    
+Passwords cracked: [number cracked]
+    2733
+Time per hash computed: [seconds per hash]
+
+Time per password cracked: [seconds per password]
+
+Passwords cracked per number of hashes computed: [passwords per hash]
+
+
+Part 2
+Total time: [user time from a "time" command]
+Number of hashes computed: [count of the # of hashes computed] 
+Passwords cracked: [number cracked]
+Time per hash computed: [seconds per hash]
+Time per password cracked: [seconds per password]
+Passwords cracked per number of hashes computed: [passwords per hash]
+
+Part 3
+Total time: [user time from a "time" command]
+Number of hashes computed: [count of the # of hashes computed] 
+Passwords cracked: [number cracked]
+Time per hash computed: [seconds per hash]
+Time per password cracked: [seconds per password]
+Passwords cracked per number of hashes computed: [passwords per hash]
+
+Part 4
+Which software did you use?
+What commands did you issue to do your password-cracking?
+How many passwords did you crack?
+How long did it take?
+
+Analysis:
+- Did your time per hash computed change between phases? By what factor? Why?
+- Did your time per password crack change between phases? By what factor? Why?
+- Suppose you wanted to precompute all the hashes for each possible password
+so you could just look up the password in a table indexed by the hash. How much
+memory would be required for each phase?
+- How well did hashcat or john do compared to your python program? Give details.
+- Give 3-4 reasons we should store password hashes and not the passwords themselves.
+Think in terms of threats, who the attackers might be, etc.

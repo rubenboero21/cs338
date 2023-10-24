@@ -84,7 +84,7 @@ def crackPhaseTwo():
     hashDict = {}
 
     i = 0
-    while i < 1: # there are 2734 possible passwords to crack
+    while i < 2734: # there are 2734 possible passwords to crack
 
         # Generate a random password from 2 words, add it to a dict of possible 
         # passwords. Compare this password to the actual hashed passwords of each user.

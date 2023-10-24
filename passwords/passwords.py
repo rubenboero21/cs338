@@ -23,6 +23,18 @@ def getUnsaltedPasswordHash(line):
     return components[1]
 
 def crackPhaseOne():
+    # Create a dict of passwords and their hashed equivalents
+    words = open("words.txt", "r")
+
+    hashDict = {}
+
+    for word in words:
+        word = str(word).lower()
+        word = word.strip()
+        hashDict[hashPasswd(word)] = word
+
+    words.close()
+
     # Crack the passwords by comparing the hashes to our dictionary
     passwords1 = open("passwords1.txt", "r")
     solutions = open("cracked1.txt", "w")
@@ -44,18 +56,6 @@ if __name__ == '__main__':
         print('''Enter the phase that you would like to solve. \nFor example, 
                 type:\n\npython3 passwords 1 \n\nto solve phase 1''')
         exit()
-   
-    # Create a dict of passwords and their hashed equivalents
-    words = open("words.txt", "r")
-
-    hashDict = {}
-
-    for word in words:
-        word = str(word).lower()
-        word = word.strip()
-        hashDict[hashPasswd(word)] = word
-
-    words.close()
     
     if sys.argv[1] == "phase1" or sys.argv[1] == 1:
         crackPhaseOne()

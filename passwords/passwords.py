@@ -1,4 +1,4 @@
-# Ruben Boero
+# Ruben Boero and Vanessa Heynes
 
 '''
 This code is meant to be run from a command line (within the passwords folder).
@@ -66,13 +66,15 @@ def crackPhaseOne():
     solutions.close()
 
 if __name__ == '__main__':
-
-    if len (sys.argv) < 2:
+    if len(sys.argv) < 2:
         print('''Enter the phase that you would like to solve. \nFor example, type:\n\npython3 passwords 1 \n\nto solve phase 1''')
         exit()
-    
-    if sys.argv[1] == "phase1" or sys.argv[1] == 1:
-        crackPhaseOne()
 
-    else:
-        print("Invalid command, see top of code for documentation.")
+    elif len(sys.argv) == 2:
+        if sys.argv[1] == "phase1" or sys.argv[1] == "1":
+            print("hey")
+            crackPhaseOne()
+
+    elif len(sys.argv) == 3 and sys.argv[0] == "time":
+        if sys.argv[2] == "phase1" or sys.argv[2] == "1":
+            crackPhaseOne()

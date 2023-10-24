@@ -17,7 +17,7 @@ import binascii
 import sys
 
 # function taken from Jeff's sample code
-def hashPasswd(password):
+def hashPassword(password):
     encoded_password = password.encode('utf-8') # type=bytes
     hasher = hashlib.sha256(encoded_password)
     digest = hasher.digest() # type=bytes
@@ -43,7 +43,7 @@ def crackPhaseOne():
     for word in words:
         word = str(word).lower()
         word = word.strip()
-        hashDict[hashPasswd(word)] = word
+        hashDict[hashPassword(word)] = word
 
     words.close()
 

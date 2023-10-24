@@ -80,25 +80,28 @@ def crackPhaseTwo():
 
     passwords2 = open("passwords2.txt", "r")
     solutions = open("cracked2.txt", "w")
-    
-    hashDict = {}
 
-    i = 0
-    while i < 2734: # there are 2734 possible passwords to crack
+    hashesComputed = 0
+    for line in passwords2:
+        user = getUser(line)
+        passwordHash = getUnsaltedPasswordHash(line)
+        hashDict = {}
 
-        # Generate a random password from 2 words, add it to a dict of possible 
-        # passwords. Compare this password to the actual hashed passwords of each user.
-        # If it's a match, add it to the output file, if not, try again with a new password.
-        wordOne = words[random.randrange(0, len(words))]
-        wordTwo = words[random.randrange(0, len(words))]
+        while True:
+            wordOne = words[random.randrange(0, len(words))]
+            wordTwo = words[random.randrange(0, len(words))]
+            curPassword = wordOne + wordTwo
+            # store the password in dict to avoid repeats
+            hashDict[hashPassword(curPassword)] = curPassword
+            
+            hashesComputed += 1
 
-        curPassword = wordOne + wordTwo
-
-        hashDict[hashPassword(curPassword)] = curPassword
-
-        for hash in passwords2:
-            user = getUser(hash)
-            passwordHash = getUnsaltedPasswordHash(hash)
+            # print(f'Random password: {curPassword}\n')
+            # print(f'Random passwd hash: {hashPassword(curPassword)}\n')
+            # print(f'Current user: {user}\n')
+            # print(f'Current user passwd hash: {passwordHash}\n')
+            # print(f'Dict len: {len(hashDict)}\n')
+            # print("____________________")
 
             found = hashDict.get(passwordHash, False)
             if found:
@@ -106,11 +109,15 @@ def crackPhaseTwo():
                 
                 solutions.write(f'{user}:{password}\n')
                 print(f'Found a password: {user}:{password}\n')
+                
+                break
 
-                i += 1
-
+        hashDict.clear()
+        
     passwords2.close()
     solutions.close()
+
+    print("Number of hashes computeed: ", hashesComputed)
 
 def crackPhaseThree():
     words = [line.strip().lower() for line in open('words.txt')]

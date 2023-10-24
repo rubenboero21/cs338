@@ -31,6 +31,14 @@ def getUser(line):
     components = line.split(":")
     return components[0]
 
+def getSaltedPasswordHash(line):
+    components = line.split("$")
+    return components[3]
+
+def getSalt(line):
+    components = line.split("$")
+    return components[2]
+
 def getUnsaltedPasswordHash(line):
     components = line.split(":")
     return components[1]
@@ -103,6 +111,30 @@ def crackPhaseTwo():
     passwords2.close()
     solutions.close()
 
+def crackPhaseThree():
+    words = [line.strip().lower() for line in open('words.txt')]
+    passwords3 = open("passwords3.txt", "r")
+    solutions = open("cracked3.txt", "w")
+
+    for hash in passwords3:
+        hashDict = {}
+
+        user = getUser(hash)
+        salt = getSalt(hash)
+        passwordHash = getSaltedPasswordHash(hash)
+
+        # compute all possible passwords for a single user
+        for word in words:
+            hashDict[hashPassword(salt + word)] = word
+
+        # find the single password that the user actually has
+        for possiblePassword in hashDict:
+            password = hashDict.get(possiblePassword)
+
+            solutions.write(f'{user}:{password}\n')
+            print(f'Found a password: {user}:{password}\n')
+
+        hashDict.clear()
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -116,9 +148,5 @@ if __name__ == '__main__':
         elif sys.argv[1] == "phase2" or sys.argv[1] == "2":
             crackPhaseTwo()
 
-    elif len(sys.argv) == 3 and sys.argv[0] == "time":
-        if sys.argv[2] == "phase1" or sys.argv[2] == "1":
-            crackPhaseOne()
-
-        elif sys.argv[2] == "phase2" or sys.argv[2] == "2":
-            crackPhaseTwo()
+        elif sys.argv[1] == "phase3" or sys.argv[1] == "3":
+            print(":P")

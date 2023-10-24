@@ -1,5 +1,17 @@
 # Ruben Boero
 
+'''
+This code is meant to be run from a command line (within the passwords folder).
+
+There are 3 commands that can be run:
+
+    python3 passwords 1
+    python3 passwords 2
+    python3 passwords 3
+
+Each of these commands corresponds with password cracking for phase 1, 2, and 3 respectively.
+'''
+
 import hashlib
 import binascii
 import sys

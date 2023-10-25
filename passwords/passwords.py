@@ -77,15 +77,17 @@ def crackPhaseOne():
 
 def crackPhaseTwo():
     words = [line.strip().lower() for line in open('words.txt')]
+    # words = [line.strip().lower() for line in open('testwords.txt')]
 
     passwords2 = open("passwords2.txt", "r")
+    # passwords2 = open("testpasswords.txt", "r")
     solutions = open("cracked2.txt", "w")
 
     hashesComputed = 0
     for line in passwords2:
         user = getUser(line)
         passwordHash = getUnsaltedPasswordHash(line)
-        hashDict = {}
+        # hashDict = {}
 
         print("user:", user)
 
@@ -93,28 +95,41 @@ def crackPhaseTwo():
             wordOne = words[random.randrange(0, len(words))]
             wordTwo = words[random.randrange(0, len(words))]
             curPassword = wordOne + wordTwo
+            hashedGuess = hashPassword(curPassword)
             # store the password in dict to avoid repeats
-            hashDict[hashPassword(curPassword)] = curPassword
+            # hashDict[hashPassword(curPassword)] = curPassword
             
             hashesComputed += 1
 
-            print(f'Random password: {curPassword}\n')
+            # print("user:", user)
+            # print(f'Random password: {curPassword}\n')
+            # print("rand password hash:", hashedGuess)
+            # print("user hash:", passwordHash)
             # print(f'Random passwd hash: {hashPassword(curPassword)}\n')
             # print(f'Current user: {user}\n')
             # print(f'Current user passwd hash: {passwordHash}\n')
             # print(f'Dict len: {len(hashDict)}\n')
             # print("____________________")
 
-            found = hashDict.get(passwordHash, False)
-            if found:
-                password = hashDict[passwordHash]
+            # found = hashDict.get(passwordHash)
+
+            # if curPassword == "carcar":
+            #     print("found the right passwd", curPassword)
+            #     print("user's hash:", passwordHash, " computed hash:", hashPassword("carcar"))
+            #     break
+
+            # if found != None:
+            if hashedGuess.strip() == passwordHash.strip():
+                # password = hashDict[passwordHash]
                 
-                solutions.write(f'{user}:{password}\n')
-                print(f'Found a password: {user}:{password}\n')
+                # solutions.write(f'{user}:{password}\n')
+                # print(f'Found a password: {user}:{password}\n')
+                solutions.write(f'{user}:{curPassword}\n')
+                print(f'Found a password: {user}:{curPassword}\n')
                 
                 break
 
-        hashDict.clear()
+        # hashDict.clear()
         print("Number of hashes computeed: ", hashesComputed)
         
     passwords2.close()

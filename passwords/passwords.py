@@ -152,6 +152,10 @@ def crackPhaseTwo():
 
         startingWordIndex = 0
 
+        # keep track of the starting word of the password
+        # hash and store all possible passwords starting with that word
+        # check to see if it matches user password
+        # if yes, done. if no, move on to the next word
         while True:
             for word in words:
                 curGuess = words[startingWordIndex] + word

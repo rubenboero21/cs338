@@ -172,6 +172,8 @@ def crackPhaseTwo():
                 print(f'Found a password: {user}:{curGuess}\n')
                 solutions.write(f'{user}:{curGuess}\n')
                 break
+            
+        print("number of hashes computed:", hashesComputed)
 
 def crackPhaseThree():
     words = [line.strip().lower() for line in open('words.txt')]

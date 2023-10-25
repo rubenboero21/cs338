@@ -89,8 +89,6 @@ def crackPhaseTwo():
         passwordHash = getUnsaltedPasswordHash(line)
         # hashDict = {}
 
-        print("user:", user)
-
         while True:
             wordOne = words[random.randrange(0, len(words))]
             wordTwo = words[random.randrange(0, len(words))]

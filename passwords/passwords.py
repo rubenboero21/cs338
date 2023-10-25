@@ -87,6 +87,8 @@ def crackPhaseTwo():
         passwordHash = getUnsaltedPasswordHash(line)
         hashDict = {}
 
+        print("user:", user)
+
         while True:
             wordOne = words[random.randrange(0, len(words))]
             wordTwo = words[random.randrange(0, len(words))]
@@ -96,7 +98,7 @@ def crackPhaseTwo():
             
             hashesComputed += 1
 
-            # print(f'Random password: {curPassword}\n')
+            print(f'Random password: {curPassword}\n')
             # print(f'Random passwd hash: {hashPassword(curPassword)}\n')
             # print(f'Current user: {user}\n')
             # print(f'Current user passwd hash: {passwordHash}\n')

@@ -115,11 +115,10 @@ def crackPhaseTwo():
                 break
 
         hashDict.clear()
+        print("Number of hashes computeed: ", hashesComputed)
         
     passwords2.close()
     solutions.close()
-
-    print("Number of hashes computeed: ", hashesComputed)
 
 def crackPhaseThree():
     words = [line.strip().lower() for line in open('words.txt')]

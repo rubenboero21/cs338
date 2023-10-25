@@ -75,7 +75,7 @@ def crackPhaseOne():
     passwords1.close()
     solutions.close()
 
-def crackPhaseTwo():
+'''def crackPhaseTwo():
     words = [line.strip().lower() for line in open('words.txt')]
     # words = [line.strip().lower() for line in open('testwords.txt')]
 
@@ -132,6 +132,42 @@ def crackPhaseTwo():
         
     passwords2.close()
     solutions.close()
+'''
+
+def crackPhaseTwo():
+    words = [line.strip().lower() for line in open('words.txt')]
+    # words = [line.strip().lower() for line in open('testwords.txt')]
+
+    passwords2 = open("passwords2.txt", "r")
+    # passwords2 = open("testpasswords.txt", "r")
+    solutions = open("cracked2.txt", "w")
+
+    hashesComputed = 0
+
+    for line in passwords2:
+        hashDict = {}
+
+        user = getUser(line)
+        passwordHash = getUnsaltedPasswordHash(line)
+
+        startingWordIndex = 0
+
+        while True:
+            for word in words:
+                curGuess = words[startingWordIndex] + word
+                hashDict[hashPassword(curGuess)] = curGuess
+                hashesComputed += 1
+            
+            found = hashDict.get(passwordHash)
+
+            if found == None:
+                hashDict.clear()
+                startingWordIndex += 1
+            else:
+                hashDict.clear()
+                print(f'Found a password: {user}:{curGuess}\n')
+                solutions.write(f'{user}:{curGuess}\n')
+                break
 
 def crackPhaseThree():
     words = [line.strip().lower() for line in open('words.txt')]

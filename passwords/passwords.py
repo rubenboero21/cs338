@@ -157,6 +157,10 @@ def crackPhaseTwo():
         # check to see if it matches user password
         # if yes, done. if no, move on to the next word
         while True:
+            # this print statement gives a sense of how far into the process we are for each
+            # user
+            print("first word:", words[startingWordIndex])
+
             for word in words:
                 curGuess = words[startingWordIndex] + word
                 hashDict[hashPassword(curGuess)] = curGuess
@@ -174,6 +178,8 @@ def crackPhaseTwo():
                 break
             
         print("number of hashes computed:", hashesComputed)
+        # so few passwords will be computed that I can delete the hash count manually
+        solutions.write(f'Number of hashes computed for {user}:{hashesComputed}\n')
 
 def crackPhaseThree():
     words = [line.strip().lower() for line in open('words.txt')]

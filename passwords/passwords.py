@@ -19,11 +19,11 @@ import random
 
 # function taken from Jeff's sample code
 def hashPassword(password):
-    encoded_password = password.encode('utf-8') # type=bytes
+    encoded_password = password.encode('utf-8')
     hasher = hashlib.sha256(encoded_password)
-    digest = hasher.digest() # type=bytes
-    digest_as_hex = binascii.hexlify(digest) # weirdly, still type=bytes
-    digest_as_hex_string = digest_as_hex.decode('utf-8') # type=string
+    digest = hasher.digest()
+    digest_as_hex = binascii.hexlify(digest)
+    digest_as_hex_string = digest_as_hex.decode('utf-8')
 
     return digest_as_hex_string
 
@@ -75,111 +75,37 @@ def crackPhaseOne():
     passwords1.close()
     solutions.close()
 
-'''def crackPhaseTwo():
-    words = [line.strip().lower() for line in open('words.txt')]
-    # words = [line.strip().lower() for line in open('testwords.txt')]
-
-    passwords2 = open("passwords2.txt", "r")
-    # passwords2 = open("testpasswords.txt", "r")
-    solutions = open("cracked2.txt", "w")
-
-    hashesComputed = 0
-    for line in passwords2:
-        user = getUser(line)
-        passwordHash = getUnsaltedPasswordHash(line)
-        # hashDict = {}
-
-        while True:
-            wordOne = words[random.randrange(0, len(words))]
-            wordTwo = words[random.randrange(0, len(words))]
-            curPassword = wordOne + wordTwo
-            hashedGuess = hashPassword(curPassword)
-            # store the password in dict to avoid repeats
-            # hashDict[hashPassword(curPassword)] = curPassword
-            
-            hashesComputed += 1
-
-            # print("user:", user)
-            # print(f'Random password: {curPassword}\n')
-            # print("rand password hash:", hashedGuess)
-            # print("user hash:", passwordHash)
-            # print(f'Random passwd hash: {hashPassword(curPassword)}\n')
-            # print(f'Current user: {user}\n')
-            # print(f'Current user passwd hash: {passwordHash}\n')
-            # print(f'Dict len: {len(hashDict)}\n')
-            # print("____________________")
-
-            # found = hashDict.get(passwordHash)
-
-            # if curPassword == "carcar":
-            #     print("found the right passwd", curPassword)
-            #     print("user's hash:", passwordHash, " computed hash:", hashPassword("carcar"))
-            #     break
-
-            # if found != None:
-            if hashedGuess.strip() == passwordHash.strip():
-                # password = hashDict[passwordHash]
-                
-                # solutions.write(f'{user}:{password}\n')
-                # print(f'Found a password: {user}:{password}\n')
-                solutions.write(f'{user}:{curPassword}\n')
-                print(f'Found a password: {user}:{curPassword}\n')
-                
-                break
-
-        # hashDict.clear()
-        print("Number of hashes computeed: ", hashesComputed)
-        
-    passwords2.close()
-    solutions.close()
-'''
-
 def crackPhaseTwo():
     words = [line.strip().lower() for line in open('words.txt')]
-    # words = [line.strip().lower() for line in open('testwords.txt')]
-
-    passwords2 = open("passwords2.txt", "r")
-    # passwords2 = open("testpasswords.txt", "r")
     solutions = open("cracked2.txt", "w")
+    extraInfo = open("hashCount.txt", "w")
+    
+    hashesToCrack = {}
+    hashCount = 0
+    
+    # make a dict of hashed passwords and their corresponding usernames
+    with open("passwords2.txt") as f:
+        for line in f:
+            user = getUser(line)
+            hashedPassword = getUnsaltedPasswordHash(line)
 
-    hashesComputed = 0
+            hashesToCrack[hashedPassword] = user
 
-    for line in passwords2:
-        hashDict = {}
+    # generate all the possible passwords, and check to see if it matches any of the hashes
+    # saved in the dictionary
+    for word1 in words:
+        for word2 in words:
+            password = word1 + word2
+            hash = hashPassword(password)
+            hashCount += 1
 
-        user = getUser(line)
-        passwordHash = getUnsaltedPasswordHash(line)
-
-        startingWordIndex = 0
-
-        # keep track of the starting word of the password
-        # hash and store all possible passwords starting with that word
-        # check to see if it matches user password
-        # if yes, done. if no, move on to the next word
-        while True:
-            # this print statement gives a sense of how far into the process we are for each
-            # user
-            print("first word:", words[startingWordIndex])
-
-            for word in words:
-                curGuess = words[startingWordIndex] + word
-                hashDict[hashPassword(curGuess)] = curGuess
-                hashesComputed += 1
+            found = hashesToCrack.get(hash)
             
-            found = hashDict.get(passwordHash)
-
             if found == None:
-                hashDict.clear()
-                startingWordIndex += 1
+                continue
             else:
-                hashDict.clear()
-                print(f'Found a password: {user}:{curGuess}\n')
-                solutions.write(f'{user}:{curGuess}\n')
-                break
-            
-        print("number of hashes computed:", hashesComputed)
-        # so few passwords will be computed that I can delete the hash count manually
-        solutions.write(f'Number of hashes computed for {user}:{hashesComputed}\n')
+                solutions.write(f'{hashesToCrack[hash]}:{password}\n')
+                extraInfo.write(f'Number of hashes computed: {hashCount}\n')
 
 def crackPhaseThree():
     words = [line.strip().lower() for line in open('words.txt')]

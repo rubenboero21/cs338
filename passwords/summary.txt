@@ -61,8 +61,7 @@ Analysis:
     longer time to compute.
 
 - Did your time per password crack change between phases? By what factor? Why?
-    Yes. Phase 1 took approximately 10^4 times less time to crack each password than phases 2 
-    and 3. 
+    Yes. Phase 1 took approximately 10^5 times less time to crack each password than phases 2, and 10^3 times less time than            phase3. 
 
     phase 1: 3.11e-4 (seconds)
     phase 2: 41.77 (seconds)
@@ -95,3 +94,12 @@ memory would be required for each phase?
 
 - Give 3-4 reasons we should store password hashes and not the passwords themselves.
 Think in terms of threats, who the attackers might be, etc.
+    * If a password is both hashed and salted, the attacker needs to guess both the salt and the password to crack the password.
+        This means that an attacker cannot use precomputed hash dictionaries. (An added layer of security.)
+    
+    * If the passwords are not hashed, the /etc/passwords file will contain a list of usernames and passwords. This means that 
+        an attacker only needs to gain access to the admin password and they wil gain access to all other passwords on the device.
+    
+    * If passwords are stored in plain text, it's faster to brute force passwords as the hashes don't need to be computed.
+
+    * Without hashing, it's not possible to add a salt to a password. This means that duplicate passwords can exist wherever the         passwords are stored.
